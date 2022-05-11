@@ -1,0 +1,13 @@
+version: '3'
+services:
+  tshock:
+    build: .
+    container_name: tshock
+    ports:
+      - "7777:7777"
+    volumes:
+      - ./tshock:/opt/tshock
+    stdin_open: true
+    tty: true
+    environment:
+      - WORLD=world2
