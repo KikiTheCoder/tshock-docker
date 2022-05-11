@@ -10,6 +10,9 @@ RUN apt-get update && \
     apt-get install -y \
     unzip
 
+ENV WORLD=world1
+ENV WORLD_SIZE=1
+
 # grab tshock release
 ENV TSHOCK_VERSION 4.5.17
 ENV TERRARIA_VERSION 1.4.3.6
@@ -24,4 +27,4 @@ WORKDIR /opt
 EXPOSE 7777
 
 # define default command
-ENTRYPOINT /usr/bin/mono --server --gc=sgen -O=all TerrariaServer.exe -config /opt/tshock/serverconfig.txt -autocreate -world /opt/tshock/worlds/${WORLD}.wld -worldselectpath /opt/tshock/worlds -port 7777 -ip 0.0.0.0 -maxplayers 16
+ENTRYPOINT /usr/bin/mono --server --gc=sgen -O=all TerrariaServer.exe -config /opt/tshock/serverconfig.txt -autocreate ${WORLD_SIZE} -world /opt/tshock/worlds/${WORLD}.wld -worldselectpath /opt/tshock/worlds -port 7777 -ip 0.0.0.0 -maxplayers 16
